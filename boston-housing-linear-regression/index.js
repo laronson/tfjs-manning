@@ -1,7 +1,9 @@
 import { loadHousingData, featureDescriptions } from "./housingData.js";
 import * as tf from "@tensorflow/tfjs";
+import * as tfvis from "@tensorflow/tfjs-vis";
 
 const TRAIN_BUTTON = document.getElementById("simple-mlr");
+const CHART_CONTAINER = document.getElementById("tfvis-chart");
 
 const LEARNING_RATE = 0.01;
 
@@ -34,6 +36,7 @@ function generateAndCompileModel(numFeatures) {
 }
 
 async function trainModel(model, trainFeatures, trainTarget) {
+  const trainLogs = [];
   const normalizedTrainingFeatures = normalizeDataSet(trainFeatures);
 
   const results = await model.fit(normalizedTrainingFeatures, trainTarget, {
@@ -46,6 +49,8 @@ async function trainModel(model, trainFeatures, trainTarget) {
         console.log(
           `Epoch: ${epoch}, loss: ${logs.loss}, val_loss: ${logs.val_loss}`
         );
+        trainLogs.push(logs);
+        tfvis.show.history(CHART_CONTAINER, trainLogs, ["loss", "val_loss"]);
       },
     },
   });
