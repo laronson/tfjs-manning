@@ -1,5 +1,8 @@
-import { loadCsv } from "./load-data-utils.js";
 import * as tf from "@tensorflow/tfjs";
+import { loadCsv } from "../util/load-csv.js";
+
+const BASE_URL =
+  "https://storage.googleapis.com/tfjs-examples/multivariate-linear-regression/data/";
 
 export const featureDescriptions = [
   "Crime rate",
@@ -24,10 +27,10 @@ const TEST_TARGET_FN = "test-target.csv";
 export async function loadHousingData() {
   const [trainFeaturesArr, trainTargetArr, testFeaturesArr, testTargetArr] =
     await Promise.all([
-      loadCsv(TRAIN_FEATURES_FN),
-      loadCsv(TRAIN_TARGET_FN),
-      loadCsv(TEST_FEATURES_FN),
-      loadCsv(TEST_TARGET_FN),
+      loadCsv(BASE_URL, TRAIN_FEATURES_FN),
+      loadCsv(BASE_URL, TRAIN_TARGET_FN),
+      loadCsv(BASE_URL, TEST_FEATURES_FN),
+      loadCsv(BASE_URL, TEST_TARGET_FN),
     ]);
 
   tf.util.shuffleCombo(trainFeaturesArr, trainTargetArr);

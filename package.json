@@ -1,0 +1,35 @@
+{
+  "name": "tfjs-examples",
+  "version": "0.1.0",
+  "description": "",
+  "license": "Apache-2.0",
+  "private": true,
+  "dependencies": {
+    "@tensorflow/tfjs": "4.19.0",
+    "@tensorflow/tfjs-vis": "1.5.1",
+    "papaparse": "^5.3.0"
+  },
+  "targets": {
+    "boston-housing-linear-regression": {
+      "source": "boston-housing-linear-regression/index.html"
+    },
+    "boston-housing-nonlinearity": {
+      "source": "boston-housing-nonlinearity/index.html"
+    }
+  },
+  "scripts": {
+    "start": "cross-env NODE_ENV=development parcel --no-hmr --open --target ",
+    "clean": "rm -rf .parcel-cache && rm -rf dist"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "clang-format": "~1.2.2",
+    "cross-env": "^5.1.6",
+    "parcel": "~2.3.2",
+    "process": "^0.11.10"
+  },
+  "resolutions": {
+    "node-fetch": "2.6.7",
+    "ansi-regex": "5.0.1"
+  }
+}
