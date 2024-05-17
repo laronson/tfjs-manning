@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 const Papa = require("papaparse");
 import { parseCsv } from "./parse-csv.js";
 

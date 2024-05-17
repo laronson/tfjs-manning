@@ -39,7 +39,7 @@ async function trainModel(model, trainFeatures, trainTarget) {
   const trainLogs = [];
   const normalizedTrainingFeatures = normalizeDataSet(trainFeatures);
 
-  const results = await model.fit(normalizedTrainingFeatures, trainTarget, {
+  await model.fit(normalizedTrainingFeatures, trainTarget, {
     validationSplit: 0.2,
     epochs: 200,
     batchSize: 20,
