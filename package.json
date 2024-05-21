@@ -18,6 +18,9 @@
     },
     "website-phishing": {
       "source": "src/website-phishing/index.html"
+    },
+    "iris-multiclass-classification": {
+      "source": "src/iris-multiclass-classification/index.html"
     }
   },
   "scripts": {
