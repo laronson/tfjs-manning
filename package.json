@@ -15,6 +15,9 @@
     },
     "boston-housing-nonlinearity": {
       "source": "boston-housing-nonlinearity/index.html"
+    },
+    "website-phishing": {
+      "source": "website-phishing/index.html"
     }
   },
   "scripts": {
