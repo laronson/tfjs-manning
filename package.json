@@ -11,13 +11,13 @@
   },
   "targets": {
     "boston-housing-linear-regression": {
-      "source": "boston-housing-linear-regression/index.html"
+      "source": "src/boston-housing-linear-regression/index.html"
     },
     "boston-housing-nonlinearity": {
-      "source": "boston-housing-nonlinearity/index.html"
+      "source": "src/boston-housing-nonlinearity/index.html"
     },
     "website-phishing": {
-      "source": "website-phishing/index.html"
+      "source": "src/website-phishing/index.html"
     }
   },
   "scripts": {
