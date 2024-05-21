@@ -34,7 +34,7 @@ export function defineModel(numFeatures) {
    * intelligently changes the learning rate throughout training to best find weights that result in minimum loss.  As
    * a result, the adam optimizer leads to better convergence and less dependence on the choice of learning rate to
    * avoid the scenario where a too high of a learning rate is chosen leading to "zig-zags" and too low or a rate is
-   * chosen leading to a slow and less optimal training process.
+   * chosen leading to a slow and less optimal training  process.
    */
   model.compile({
     optimizer: "adam",
