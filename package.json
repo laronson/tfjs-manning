@@ -21,6 +21,9 @@
     },
     "iris-multiclass-classification": {
       "source": "src/iris-multiclass-classification/index.html"
+    },
+    "mnist-convnet": {
+      "source": "src/mnist-convnet/index.html"
     }
   },
   "scripts": {
