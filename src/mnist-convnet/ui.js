@@ -1,3 +1,5 @@
+const MODEL_TRAINED_TEXT = "Model has been trained."; //hacky way to check if model has already been trained for model select
+
 export function getTrainButton() {
   return document.getElementById("train-model-button");
 }
@@ -6,13 +8,21 @@ export function getPredictOneButton() {
   return document.getElementById("predict-one");
 }
 
+export function getModelType() {
+  return document.getElementById("model-select").value;
+}
+
+export function getModelPath() {
+  return document.getElementById("model-path-input").value;
+}
+
 export function setStatusToReady() {
-  document.getElementById("status").innerText = "Model and training data ready";
+  document.getElementById("status").innerText = "training data ready";
   getTrainButton().removeAttribute("disabled");
 }
 
 export function setStatusToTrained() {
-  document.getElementById("status").innerText = "Model has been trained.";
+  document.getElementById("status").innerText = MODEL_TRAINED_TEXT;
   getPredictOneButton().removeAttribute("disabled");
 }
 
@@ -56,3 +66,14 @@ export function drawPrediction(image, target, prediction) {
   imageDiv.appendChild(predText);
   imageDiv.appendChild(targetText);
 }
+
+const modelSelect = document.getElementById("model-select");
+modelSelect.addEventListener("change", () => {
+  if (modelSelect.value === "browser") {
+    if (document.getElementById("status").innerText !== MODEL_TRAINED_TEXT) {
+      getPredictOneButton().setAttribute("disabled", true);
+    }
+  } else {
+    getPredictOneButton().removeAttribute("disabled");
+  }
+});

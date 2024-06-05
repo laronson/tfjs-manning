@@ -1,7 +1,7 @@
 import * as tf from "@tensorflow/tfjs";
 
 import { convertImageBufferTo4DTensor, convertLabelBufferTo2DTensor, getData } from "./data.js";
-import { defineConvnetModel } from "./define-convnet-model.js";
+import { getModel } from "./define-convnet-model.js";
 import {
   setStatusToReady,
   getTrainingEpochs,
@@ -10,22 +10,13 @@ import {
   getPredictOneButton,
   setStatusToTrained,
   drawPrediction,
+  getModelType,
 } from "./ui.js";
 
 let model;
 let imageData;
 const imgHeight = 28;
 const imgWidth = 28;
-
-async function prepareForModelUsage() {
-  model = defineConvnetModel(imgHeight, imgWidth);
-  imageData = await getData();
-  console.log(imageData);
-
-  if (model && imageData) {
-    setStatusToReady();
-  }
-}
 
 async function trainModel() {
   const { trainImages, trainLabels } = imageData;
@@ -87,19 +78,25 @@ function predictOne() {
 }
 
 async function run() {
+  imageData = await getData();
+  setStatusToReady();
+
   const trainButton = getTrainButton();
   const predictOneButton = getPredictOneButton();
 
   trainButton.addEventListener("click", async () => {
+    model = await getModel({ modelType: getModelType(), imgHeight, imgWidth });
+    document.getElementById("model-select").setAttribute("disabled", true);
     await trainModel();
     evaluateModel();
     setStatusToTrained();
   });
-  predictOneButton.addEventListener("click", () => {
+  predictOneButton.addEventListener("click", async () => {
+    if (!model) {
+      model = await getModel({ modelType: getModelType(), imgHeight, imgWidth });
+    }
     predictOne();
   });
-
-  await prepareForModelUsage();
 }
 
 run();

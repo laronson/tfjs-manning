@@ -43,3 +43,13 @@ function compileConvnetModel(model) {
 
   model.compile({ optimizer, loss: lossFn, metrics });
 }
+
+export function getModel({ modelType, imgHeight, imgWidth }) {
+  if (modelType === "browser") {
+    console.log("Using browser model");
+    return defineConvnetModel(imgHeight, imgWidth);
+  } else {
+    console.log("Using server model");
+    return tf.loadLayersModel(tf.io.browserHTTPRequest("http://localhost:8080/model.json"));
+  }
+}
