@@ -28,6 +28,9 @@
     },
     "mnist-convnet": {
       "source": "src/mnist-convnet/index.html"
+    },
+    "mnist-transfer-learning": {
+      "source": "src/mnist-transfer-learning/index.html"
     }
   },
   "scripts": {
